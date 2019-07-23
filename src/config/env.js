@@ -12,10 +12,10 @@ let baseImgPath;
 
 if (process.env.NODE_ENV == 'development') {
 	baseUrl = '';
-    baseImgPath = '/img/';
+    baseImgPath = '127.0.0.1:9000/img';
 }else{
-	baseUrl = '//elm.cangdu.org';
-    baseImgPath = '//elm.cangdu.org/img/';
+	baseUrl = '//127.0.0.1:9000';
+    baseImgPath = '//elm.cangdu.org/img';
 }
 
 export {

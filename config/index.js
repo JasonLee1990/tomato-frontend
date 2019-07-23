@@ -40,6 +40,7 @@ module.exports = {
         '/promotion',
         '/eus',
         '/payapi',
+        '/pub',
         '/admin',
         '/statis',
         '/img',
