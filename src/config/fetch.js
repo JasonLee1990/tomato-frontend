@@ -1,8 +1,14 @@
 import { baseUrl } from './env'
 
-export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 	type = type.toUpperCase();
 	url = baseUrl + url;
+	// 随机字符串禁缓存
+	if (url.lastIndexOf('?') < 0) {
+		url = url + '?t=' + Date.now()
+	} else {
+		url = url + '&t=' + Date.now()
+	}
 
 	if (type == 'GET') {
 		let dataStr = ''; //数据拼接字符串
@@ -15,7 +21,6 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 			url = url + '?' + dataStr;
 		}
 	}
-
 	if (window.fetch && method == 'fetch') {
 		let requestConfig = {
 			credentials: 'include',
@@ -28,12 +33,12 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 			cache: "force-cache"
 		}
 
-		if (type == 'POST') {
+		if (['POST', 'PUT'].includes(type)) {
 			Object.defineProperty(requestConfig, 'body', {
 				value: JSON.stringify(data)
 			})
 		}
-		
+
 		try {
 			const response = await fetch(url, requestConfig);
 			const responseJson = await response.json();

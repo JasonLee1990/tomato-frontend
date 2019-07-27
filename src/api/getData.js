@@ -1,11 +1,15 @@
 import fetch from '@/config/fetch'
 
+
+// 公开接口
 /**
  * 登陆
  */
 
 export const login = data => fetch('/pub/login', data, 'POST');
 
+
+// 商家模块
 /**
  * 退出
  */
@@ -18,11 +22,38 @@ export const signout = () => fetch('/tomator/current/signout', {}, 'DELETE');
 
 export const getCurrent = () => fetch('/tomator/current', {}, 'GET');
 
+// 商品模块
+
+/**
+ * 商品查询
+ */
+export const productSearch = (condition) => fetch('/product/query', condition, 'GET');
+
+/**
+ * 商品创建
+ */
+export const productCreate = (data) => fetch('/product', data, 'POST');
+
+/**
+ * 商品详情
+ */
+export const productDetail = (id) => fetch(`/product/${id}`, {}, 'GET');
+
+/**
+ * 商品更新
+ */
+export const productUpdate = (data) => fetch(`/product/${data.id}`, data, 'PUT');
+
+/**
+ * 商品删除
+ */
+export const productDelete = (id) => fetch(`/product/${id}`, {}, 'DELETE');
+
 /**
  * api请求量
  */
 
-export const apiCount = date => fetch('/statis/api/' + date + '/count');
+export const apiCount = date => fetch('/product/api/' + date + '/count');
 
 /**
  * 所有api请求量
