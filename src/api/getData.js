@@ -10,13 +10,13 @@ export const login = data => fetch('/pub/login', data, 'POST');
  * 退出
  */
 
-export const signout = () => fetch('/admin/signout');
+export const signout = () => fetch('/tomator/current/signout', {}, 'DELETE');
 
 /**
  * 获取用户信息
  */
 
-export const getAdminInfo = () => fetch('/admin/info');
+export const getCurrent = () => fetch('/tomator/current', {}, 'GET');
 
 /**
  * api请求量

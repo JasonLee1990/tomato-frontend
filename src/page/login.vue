@@ -22,13 +22,13 @@
               src="#"
               alt
               class="passcode"
-              style="height:40px;cursor:pointer;"
+              style="height:45px;cursor:pointer;"
               onclick="this.src=this.src+'?'"
             />
             <img
               alt="captcha"
               class="passcode"
-              style="height:40px;cursor:pointer;"
+              style="height:45px;cursor:pointer;"
               onclick="this.src = this.src + '?' + Math.random()"
               src="/pub/selfverify"
             />
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { login, getAdminInfo } from "@/api/getData";
+import { login, getCurrent } from "@/api/getData";
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -86,7 +86,7 @@ export default {
             password: this.loginForm.password,
             code: this.loginForm.code
           });
-          if (res.status == 200) {
+          if (res.code == 200) {
             this.$message({
               type: "success",
               message: "登录成功"

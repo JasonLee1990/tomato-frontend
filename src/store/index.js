@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {getAdminInfo} from '@/api/getData'
+import { getCurrent } from '@/api/getData'
 
 Vue.use(Vuex)
 
@@ -11,22 +11,22 @@ const state = {
 }
 
 const mutations = {
-	saveAdminInfo(state, adminInfo){
+	saveAdminInfo(state, adminInfo) {
 		state.adminInfo = adminInfo;
 	}
 }
 
 const actions = {
-	async getAdminData({commit}){
-		try{
-			const res = await getAdminInfo()
-			if (res.status == 1) {
+	async getAdminData({ commit }) {
+		try {
+			const res = await getCurrent()
+			if (res.code == 200) {
 				commit('saveAdminInfo', res.data);
-			}else{
+			} else {
 				throw new Error(res.type)
 			}
-		}catch(err){
-			// console.log(err.message)
+		} catch (err) {
+			console.log(err.message)
 		}
 	}
 }
